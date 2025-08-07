@@ -19,7 +19,7 @@
   </p>
 </p>
 
-![ERP Screenshot](https://github.com/user-attachments/assets/2e09b891-d5e2-4f68-b924-a1c8ea42d24d)
+![ERP Screenshot](https://adjutas.geedesk.com/static/images/adjutas-dashboard.png)
 
 ![MES Screenshot](https://github.com/user-attachments/assets/b04f3644-91aa-4f74-af8d-6f3e12116a6b)
 
@@ -27,9 +27,9 @@
 
 We built Carbon after years of building end-to-end manufacturing systems with off-the-shelf solutions. We realized that:
 
-- Modern, API-first tooling didn't exist
+- Modern, API-first application didn't exist
 - Vendor lock-in bordered on extortion
-- There is no "perfect ERP" because each company is unique
+- There is no "perfect Helpdesk" because each company is unique
 
 We built Carbon to solve these problems ☝️.
 
