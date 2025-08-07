@@ -19,9 +19,7 @@
   </p>
 </p>
 
-![ERP Screenshot](https://adjutas.geedesk.com/static/images/adjutas-dashboard.png)
-
-![MES Screenshot](https://github.com/user-attachments/assets/b04f3644-91aa-4f74-af8d-6f3e12116a6b)
+![Helpdesk Screenshot](https://adjutas.geedesk.com/static/images/adjutas-dashboard.png)
 
 ## Does the world need another Helpdesk Application?
 
