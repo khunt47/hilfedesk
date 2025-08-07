@@ -29,7 +29,7 @@ We built Carbon after years of building end-to-end manufacturing systems with of
 - Vendor lock-in bordered on extortion
 - There is no "perfect Helpdesk" because each company is unique
 
-We built Carbon to solve these problems ☝️.
+We built Hilfedesk to solve these problems ☝️. You are free to customise Hilfedesk the way you want.
 
 ## Architecture
 
@@ -69,19 +69,11 @@ Technical highlights:
 ## Techstack
 
 - [Laravel](https://laravel.com) – framework
-- xxx
-- [Remix](https://remix.run) – framework
-- [Typescript](https://www.typescriptlang.org/) – language
-- [Tailwind](https://tailwindcss.com) – styling
-- [Radix UI](https://radix-ui.com) - behavior
-- [Supabase](https://supabase.com) - database
-- [Supabase](https://supabase.com) – auth
-- [Upstash](https://upstash.com) - cache
-- [Trigger](https://trigger.dev) - jobs
-- [Resend](https://resend.com) – email
-- [Novu](https://novu.co) – notifications
-- [Vercel](https://vercel.com) – hosting
-- [Stripe](https://stripe.com) - billing
+- [PHP](https://www.php.net) – language
+- [MySQL](https://www.mysql.com) – database
+- [Memcached](https://memcached.org) - cache
+- [Vuejs](https://vuejs.org) - frontend
+
 
 ## Codebase
 
