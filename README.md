@@ -31,12 +31,6 @@ We built Carbon after years of building end-to-end manufacturing systems with of
 
 We built Hilfedesk to solve these problems ☝️. You are free to customise Hilfedesk the way you want.
 
-## Architecture
-
-Carbon is designed to make it easy for you to extend the platform by building your own apps through our API. We provide some examples to get you started in the [examples](https://github.com/crbnos/carbon/blob/main/examples) folder.
-
-![Carbon Architecture](https://github.com/user-attachments/assets/ed6dc66b-e9cb-435e-b5a9-9daf933f4a1d)
-
 
 ## Techstack
 
