@@ -72,6 +72,7 @@ Technical highlights:
 - [PHP](https://www.php.net) – language
 - [MySQL](https://www.mysql.com) – database
 - [Memcached](https://memcached.org) - cache
+- [Codeigniter 3](https://www.codeigniter.com) - frontend
 - [Vuejs](https://vuejs.org) - frontend
 
 
