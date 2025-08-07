@@ -19,7 +19,7 @@
   </p>
 </p>
 
-![Helpdesk Screenshot](https://adjutas.geedesk.com/static/images/adjutas-dashboard.png)
+![Helpdesk Screenshot](https://www.hilfedesk.com/static/images/hilfedesk.png)
 
 ## Does the world need another Helpdesk Application?
 
