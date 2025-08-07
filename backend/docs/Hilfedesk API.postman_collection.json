@@ -1,0 +1,1140 @@
+{
+	"info": {
+		"_postman_id": "c3e301b3-30ea-45d7-a02e-e0b8e8a5bfea",
+		"name": "Hilfedesk API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Set timezone",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "timezone",
+									"value": "Europe/Paris",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "acb1bb@support.com",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "code",
+									"value": "RDG",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/timezone/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"timezone",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View timezone",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/timezone",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"timezone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "Manikandan",
+									"type": "default"
+								},
+								{
+									"key": "last_name",
+									"value": "BN",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "manikandan.bn@geedesk.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "11krishnan11",
+									"type": "default"
+								},
+								{
+									"key": "role",
+									"value": "admin",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/users/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Change password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "new_password",
+									"value": "11anitha11",
+									"type": "text"
+								},
+								{
+									"key": "current_password",
+									"value": "11test11",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/password/change",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"password",
+								"change"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "My Profile (Logged user)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "new_password",
+									"value": "11anitha11",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "current_password",
+									"value": "11test11",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/my-profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"my-profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Create Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cust_name",
+									"value": "Geedesk Technologies",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "acb1bb@support.com",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "code",
+									"value": "RDG",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/customers/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"customers",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/customers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/customers/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"customers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Contact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "customer_id",
+									"value": "2",
+									"type": "default"
+								},
+								{
+									"key": "cust_fname",
+									"value": "Krishnan",
+									"type": "default"
+								},
+								{
+									"key": "cust_lname",
+									"value": "Sethuraman",
+									"type": "text"
+								},
+								{
+									"key": "cust_email",
+									"value": "ks@geedesk.com",
+									"type": "default"
+								},
+								{
+									"key": "cust_phone",
+									"value": "04132224654",
+									"type": "default"
+								},
+								{
+									"key": "cust_mobile",
+									"value": "9600067104",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contacts/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contacts",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contacts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/contacts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/contacts/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contacts",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer Contacts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/customers/contacts/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"customers",
+								"contacts",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Create Project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Geedesk",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "support@geedesk.com",
+									"type": "default"
+								},
+								{
+									"key": "code",
+									"value": "GDK",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/projects/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"projects",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Project",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/projects/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"projects",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/projects",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Map users to project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "user_ids",
+									"value": "[1, 21]",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/projects/map-users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"projects",
+								"map-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Project Tickets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/projects/tickets/1?status=all&priority=all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"projects",
+								"tickets",
+								"1"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "all"
+								},
+								{
+									"key": "priority",
+									"value": "all"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View project users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/projects/mapped-users/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"projects",
+								"mapped-users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tickets",
+			"item": [
+				{
+					"name": "Create Ticket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "heading",
+									"value": "Ticket from postman",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "desc",
+									"type": "text"
+								},
+								{
+									"key": "priority",
+									"value": "low",
+									"type": "text"
+								},
+								{
+									"key": "from_email",
+									"value": "krishnan.ubuntu@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "customer_id",
+									"value": "2",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "contact_id",
+									"value": "1",
+									"type": "default",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tickets/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ticket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/tickets/29",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets",
+								"29"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Take Ticket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ticket_id",
+									"value": "17",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tickets/take",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets",
+								"take"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Ticket Priority",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ticket_id",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "priority",
+									"value": "high",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tickets/priority/change",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets",
+								"priority",
+								"change"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Ticket Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ticket_id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "resolved",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tickets/status/change",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets",
+								"status",
+								"change"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Ticket Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ticket_id",
+									"value": "27",
+									"type": "text"
+								},
+								{
+									"key": "new_comment",
+									"value": "This is a new comment",
+									"type": "text"
+								},
+								{
+									"key": "public",
+									"value": "no",
+									"type": "default"
+								},
+								{
+									"key": "customer_id",
+									"value": "2",
+									"type": "default"
+								},
+								{
+									"key": "contact_id",
+									"value": "1",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tickets/comments/add",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets",
+								"comments",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ticket Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/tickets/comments/29/desc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets",
+								"comments",
+								"29",
+								"desc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Ticket Owner",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ticket_id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "new_owner_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tickets/owner/change",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets",
+								"owner",
+								"change"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Merge Ticket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ticket_id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "ticket_comment",
+									"value": "This ticket is now merged",
+									"type": "text"
+								},
+								{
+									"key": "merge_ticket_id",
+									"value": "2",
+									"type": "default"
+								},
+								{
+									"key": "merge_ticket_comment",
+									"value": "Main ticket with got the merged ticket",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tickets/merge",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets",
+								"merge"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add blocking tickets",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ticket_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "blocking_ticket_ids",
+									"value": "[1, 3]",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tickets/blocking-tickets/add",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets",
+								"blocking-tickets",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add related tickets",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ticket_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "related_ticket_ids",
+									"value": "[1, 4]",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tickets/related-tickets/add",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets",
+								"related-tickets",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Auth",
+			"item": [
+				{
+					"name": "Login API",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_name",
+									"value": "ks@geedesk.com",
+									"type": "text"
+								},
+								{
+									"key": "user_password",
+									"value": "11test11",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "desc",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "priority",
+									"value": "low",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "from_email",
+									"value": "krishnan.ubuntu@gmail.com",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "customer_id",
+									"value": "0",
+									"type": "default",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login/auth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "heading",
+									"value": "Ticket from postman",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "desc",
+									"type": "text"
+								},
+								{
+									"key": "priority",
+									"value": "low",
+									"type": "text"
+								},
+								{
+									"key": "from_email",
+									"value": "krishnan.ubuntu@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "customer_id",
+									"value": "0",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJjb21wYW55X2lkIjoxLCJ1c2VyX2ZuYW1lIjoiS3Jpc2huYW4iLCJ1c2VyX2xuYW1lIjoiU2V0aHVyYW1hbiIsInVzZXJfZW1haWwiOiJrc0BnZWVkZXNrLmNvbSIsInVzZXJfcm9sZSI6ImFkbWluIiwiY29tcGFueV9hcGlfa2V5IjoiZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6STFOaUo5LmV5SmpiMjF3WVc1NVgybGtJam94TENKblpXNWxjbUYwWldSZmIyNGlPaUl5TURJekxUQTJMVEV3VkRFMk9qSTFPakUyTGpRME1EVTJOVm9pTENKMWMyVnlYM1J2YTJWdUlqb2libThpTENKbGVIQnBjbUYwYVc5dVgzUnBiV1VpT2pFNE5EUXdPVFF6TVRaOS5rSV80M1Z3Mk1oa1lyZXowVHhjWlRnWVl5X3hOUkFWMEFqMzBDdUc3T0VBIiwidXNlcl90b2tlbiI6InllcyIsImV4cGlyYXRpb25fdGltZSI6MTY5MTYzOTAzM30.KBYQAzen88ggX4eWMW5efeZeSQ_FCcVPyvHb4tKsR-o",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8001/v1",
+			"type": "default"
+		}
+	]
+}

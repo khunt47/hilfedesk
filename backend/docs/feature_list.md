@@ -1,0 +1,42 @@
+# Features list
+- Signup
+- Users
+- - Edit
+- - Delete
+- - Suspend
+- Projects
+- - Map users to project
+- - Edit
+- - Delete
+- - Deactivate
+- Timezone
+- - Show and update
+- Groups
+- - Create
+- - View
+- - Map users
+- - Edit
+- - Delete
+- Holidays
+- - Create
+- - View
+- - Edit
+- - Delete
+- - Recurring holidays
+- Business hours
+- - Create
+- - View
+- - Edit
+- - Delete
+- Escalation policies
+- - Create
+- - View
+- - Edit
+- - Delete
+- Enforce policies
+- - Create
+- - View
+- - Edit
+- - Delete
+- Only admins can see admin console
+- Basic setup wizard

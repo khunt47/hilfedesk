@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  app:
+    container_name: lthdwebapp
+    build: .
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    ports:
+      - '5002:80'
+    expose:
+      - '5002'

@@ -1,0 +1,5 @@
+sudo systemctl restart daysupport-be-send-ticket-email-to-requestor
+sudo systemctl restart daysupport-be-send-comment-email-to-requestor
+
+sudo systemctl status daysupport-be-send-ticket-email-to-requestor
+sudo systemctl status daysupport-be-send-comment-email-to-requestor

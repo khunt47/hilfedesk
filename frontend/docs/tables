@@ -1,0 +1,80 @@
+Tables
+======================
+
+DB Name: selfcheckindb
+
+
+#*******Company Table*******
+
+
+create table company (
+id INT NOT NULL AUTO_INCREMENT,
+company_name VARCHAR(500) NOT NULL,
+user_fname VARCHAR(1000) NOT NULL,
+user_lname VARCHAR(1000) NOT NULL,
+email VARCHAR(1000) NOT NULL,
+phone VARCHAR(500) NOT NULL,
+account_status ENUM('active','suspended','deleted','inactive') NOT NULL default 'inactive',
+confirm_code VARCHAR(500) NOT NULL,
+team_size VARCHAR (50) NOT NULL,
+reg_on DATETIME NOT NULL, 
+PRIMARY KEY (id)
+)ENGINE = InnoDB;
+
+
+ALTER TABLE company ADD COLUMN gender ENUM('male','female','others') NULL;
+
+
+#*******Users Table*******
+
+create table users (
+id INT NOT NULL AUTO_INCREMENT,
+company_id INT NOT NULL, 
+phone_number VARCHAR(20) NOT NULL,
+user_name VARCHAR(500) NOT NULL,
+user_password VARCHAR(500) NOT NULL,
+user_fname VARCHAR(1000) NOT NULL, 
+user_lname VARCHAR(1000) NOT NULL,
+gender ENUM('male','female','others'),
+user_created_date date NOT NULL, 
+user_role ENUM ('admin','user'), 
+user_status ENUM('active','deleted') NOT NULL default 'active',
+user_updated_date datetime NULL,
+user_updated_by INT NULL,
+FOREIGN KEY (company_id) REFERENCES company(id), 
+PRIMARY KEY (id)
+)ENGINE = InnoDB;
+
+
+
+#*******Billing Table*******
+
+CREATE TABLE company_billing (
+id INT NOT NULL AUTO_INCREMENT, 
+company_id INT NOT NULL, 
+plan_id INT NOT NULL, 
+trial_start_date DATETIME  NOT NULL, 
+billing_start_date DATETIME  NOT NULL, 
+next_billing_date DATETIME  NOT NULL, 
+FOREIGN KEY (plan_id) REFERENCES plan_table(id),
+FOREIGN KEY (company_id) REFERENCES company(id),
+PRIMARY KEY (id)
+);
+
+CREATE INDEX BILLING_INDEX ON company_billing (next_billing_date);
+
+
+#*******Plans Table*******
+
+CREATE TABLE plan_table (
+id INT NOT NULL AUTO_INCREMENT, 
+plan_name VARCHAR(20) NOT NULL, 
+plan_cost VARCHAR(20) NOT NULL,  
+plan_currency ENUM ('USD', 'INR') NOT NULL default 'USD',
+PRIMARY KEY (id)
+);
+
+INSERT INTO plan_table(`id`, `plan_name`, `plan_cost`, `plan_currency`) VALUES ('1', 'Trial Plan', '0', 'USD');
+INSERT INTO plan_table (`id`, `plan_name`, `plan_cost`, `plan_currency`) VALUES ('2', 'Annual Plan', '2999', 'USD');
+INSERT INTO plan_table (`id`, `plan_name`, `plan_cost`, `plan_currency`) VALUES ('3', 'Annual Plan India', '90000', 'INR');
+
