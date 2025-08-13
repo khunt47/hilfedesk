@@ -1,0 +1,65 @@
+=============================================================
+ PHP — 30 YEARS OF WEB POWER (1995–2025)
+=============================================================
+Released: June 8, 1995  •  Creator: Rasmus Lerdorf
+What started as “Personal Home Page/Forms Interpreter” became one of
+the most widely used server-side languages on Earth.
+
+WHY THIS MATTERS
+- Millions of sites and apps (WordPress, MediaWiki, early Facebook) ran on PHP.
+- A vast ecosystem: Composer packages, PSR standards, frameworks (Laravel,
+  Symfony), and hosting everywhere.
+- Kept the web accessible to solo devs and small teams for decades.
+
+MILESTONES (short)
+- 1995  PHP/FI: personal homepage tools → general-purpose scripting.
+- 1997  PHP/FI 2.0: growing community, more DB support.
+- 1998  PHP 3 (Suraski/Gutmans): new parser; PHP goes mainstream.
+- 2000  PHP 4: Zend Engine 1.0; performance jump.
+- 2004  PHP 5: better OOP (exceptions, interfaces), Zend Engine II.
+- 2015  PHP 7: huge speed + lower memory; type hints expand.
+- 2020  PHP 8.0: JIT, union types, attributes, match, nullsafe.
+- 2021+  8.1/8.2/8.3: enums, fibers, readonly props, more typing.
+
+FUN FACTS
+- “echo” and “<?php … ?>” are muscle memory for generations of devs.
+- Composer (2012) professionalized dependency management.
+- The PHP community standardized best practices via the PHP-FIG (PSR-*).
+
+HELLO, WORLD (CLASSIC)
+<?php echo "Hello, World!\n"; ?>
+
+SNAPSHOT OF MODERN PHP (8.x)
+<?php
+declare(strict_types=1);
+
+#[Attribute] class Since { public function __construct(public string $version) {} }
+
+#[Since('8.0')]
+class Greeter {
+    public function __construct(private string $name) {}
+    public function greet(): string { return "Hello, {$this->name}!"; }
+}
+
+function square_all(array $xs): array {
+    return array_map(fn(int $n) => $n * $n, $xs);
+}
+
+$name   = $_GET['name'] ?? 'World';
+$greeter= new Greeter($name);
+
+$result = match (true) {
+    strlen($name) < 3 => 'Name is short.',
+    default           => 'Name looks good.'
+};
+
+echo $greeter->greet(), PHP_EOL;
+echo implode(',', square_all([1,2,3,4])), PHP_EOL;
+echo $result, PHP_EOL;
+
+RESPECTS
+- To the creators, maintainers, framework authors, and countless contributors
+  who kept PHP evolving for 30 years. Thank you for powering the web.
+
+This project includes this file as a small salute to the language and the
+community that made “ship it” possible for so many of us.
