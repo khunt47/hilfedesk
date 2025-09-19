@@ -2,7 +2,7 @@
 
 
 <p align="center">
-   <a href="https://carbon.ms">
+   <a href="https://www.open.hilfedesk.com">
       <img width="auto" height="200" alt="Hilfedesk Logo" src="https://open.hilfedesk.com/static/images/logo/hilfedesk-logo-webapp.png" />
    </a>
 </p>
