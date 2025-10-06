@@ -82,13 +82,18 @@ class ContactsController extends Controller
         try {
             $company_id = $request->get('company_id');
             $user_id = $request->get('user_id');
-            $contacts = Contacts::select('id', 'customer_id', 'fname', 'lname', 'email', 'phone', 'mobile')->where('company_id', $company_id)->get();
+            $customer_id = $request->get('customer_id'); 
+            // $contacts = Contacts::select('id', 'customer_id', 'fname', 'lname', 'email', 'phone', 'mobile')->where('company_id', $company_id)->get();
 
             $sql_query = "SELECT contacts.id, contacts.fname, contacts.lname, contacts.email, contacts.phone, contacts.mobile, contacts.customer_id, 
             customers.cust_name
             FROM contacts
             JOIN customers ON contacts.customer_id = customers.id
             WHERE contacts.company_id = ".$company_id;
+            
+            if (!empty($customer_id)) {
+                $sql_query .= " AND contacts.customer_id = " . intval($customer_id);
+            }
 
             $contacts = DB::select($sql_query);
 
@@ -99,10 +104,51 @@ class ContactsController extends Controller
                 return response()->json(["success" => false,  'message' => 'No contacts available'], 400);
             }
 
-        } catch (\Throwable $th) {
+        } 
+        catch (\Throwable $th) {
             $message = $th->getMessage();
             return response()->json(["success" => false,  'message' => $message], 400);
+        }
+    }
 
+
+    public function get_customer_contacts(Request $request)
+    {
+        try {
+            $company_id = $request->get('company_id');
+            $user_id = $request->get('user_id');
+
+            $validated = validator($request->all(), [
+                'customer_id' => 'bail|required|numeric|exists:customers,id',
+                'id' => Rule::unique('customers')->where(fn ($query) => $query->where('company_id', $company_id)),
+            ]);
+            if ($validated->fails()) {
+                return response()->json(["success" => false, "errors" => $validated->errors()->first()], 400);
+            }
+            else {
+                $customer_id = $request->get('customer_id');
+                $customer_id = intval($customer_id);
+            }
+
+            $sql_query = "SELECT contacts.id, contacts.fname, contacts.lname, contacts.email, contacts.phone, contacts.mobile, contacts.customer_id, 
+            customers.cust_name
+            FROM contacts
+            JOIN customers ON contacts.customer_id = customers.id
+            WHERE contacts.company_id = ".$company_id." AND contacts.customer_id = ".$customer_id;
+
+            $contacts = DB::select($sql_query);
+
+            if($contacts) {
+                return response()->json(["success" => true, "data" => $contacts], 200);
+            }
+            else {
+                return response()->json(["success" => false,  'message' => 'No contacts available'], 400);
+            }
+
+        } 
+        catch (\Throwable $th) {
+            $message = $th->getMessage();
+            return response()->json(["success" => false,  'message' => $message], 400);
         }
     }
 
@@ -136,13 +182,73 @@ class ContactsController extends Controller
                 return response()->json(["success" => false,  'message' => 'Contact details not available'], 400);
             }
 
-        } catch (\Throwable $th) {
+        } 
+        catch (\Throwable $th) {
             $message = $th->getMessage();
             return response()->json(["success" => false,  'message' => $message], 400);
-
         }
     }
 
+    /**
+    * Update contact API
+    *
+    * Method : POST
+    * 
+    * @author Jayesoorya jayesoorya.p@axiontech.work
+    *
+    * @return [json] 
+    */
+    public function update_contact(Request $request)
+    {
+        try {
+            $company_id = $request->get('company_id');
+
+            $validated = validator($request->all(), [
+                'contact_id'   => 'bail|required|exists:contacts,id',
+                'fname'        => 'bail|required|string',
+                'lname'        => 'bail|required|string',
+                'email'        => 'bail|required|email|max:255',
+                'phone'        => 'nullable|numeric|digits:10',
+                'mobile'       => 'required|numeric|digits:10',
+                'customer_id'  => 'bail|required|exists:customers,id',
+            ]);
+
+            if ($validated->fails()) {
+                return response()->json(["success" => false, "error" => $validated->errors()->first()], 400);
+            }
+
+            $contact_id   = $request->input('contact_id');
+            $fname        = $request->input('fname');
+            $lname        = $request->input('lname');
+            $email        = $request->input('email');
+            $phone        = $request->input('phone');
+            $mobile       = $request->input('mobile');
+            $customer_id  = $request->input('customer_id');
+
+            $contact_updated = DB::table('contacts')
+                       ->where('id', $contact_id)
+                       ->where('company_id', $company_id)
+                       ->update([
+                           'fname'        => $fname,
+                           'lname'        => $lname,
+                           'email'        => $email,
+                           'phone'        => $phone,
+                           'mobile'       => $mobile,
+                           'customer_id'  => $customer_id,
+                       ]);
+
+            if ($contact_updated) {
+                return response()->json(["success" => true, "message" => "Contact updated successfully"], 200);
+            } else {
+                return response()->json(["success" => false, "error" => "No changes made or contact not found"], 400);
+            }
+        } 
+        catch (\Throwable $th) {
+            $message = $th->getMessage();
+            return response()->json(["success" => false,  'message' => $message], 400);
+        }
+    }
+    
 
     public function create_contacts(Request $request)
     {

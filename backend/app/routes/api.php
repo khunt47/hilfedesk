@@ -83,6 +83,7 @@ Route::prefix('v1')->group(function () {
                 //Customers
                 Route::prefix('customers')->group(function () {
                     Route::get('/', 'App\Http\Controllers\CustomerController@get_customers');
+                    Route::get('/contacts', 'App\Http\Controllers\ContactsController@get_customer_contacts');
                     Route::get('{id}', 'App\Http\Controllers\CustomerController@get_customer');
                     Route::post('create', 'App\Http\Controllers\CustomerController@create_customer');
                     Route::get('contacts/{id}', 'App\Http\Controllers\CustomerController@get_customer_contacts');
@@ -93,6 +94,7 @@ Route::prefix('v1')->group(function () {
                 Route::prefix('suggestions')->group(function() {
                     Route::post('create', 'App\Http\Controllers\SuggestionsController@create_suggestion');
                     Route::get('/', 'App\Http\Controllers\SuggestionsController@get_suggestions');
+                    Route::post('update', 'App\Http\Controllers\SuggestionsController@update_suggestion');
                 });
                 //Suggestions
 
@@ -108,6 +110,8 @@ Route::prefix('v1')->group(function () {
                     Route::get('/', 'App\Http\Controllers\ContactsController@get_contacts');
                     Route::get('{id}', 'App\Http\Controllers\ContactsController@get_contact');
                     Route::post('create', 'App\Http\Controllers\ContactsController@create_contact');
+                    Route::post('update', 'App\Http\Controllers\ContactsController@update_contact');
+                    Route::get('filter', 'App\Http\Controllers\ContactsController@get_contacts_filtered');
                 });
                 //Contacts
 

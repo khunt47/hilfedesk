@@ -16,7 +16,7 @@ class SendGridEmail
 			    "text/html", $body
 			);
 
-			$api_key = '';
+			$api_key = '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';
 
 			$sendgrid = new \SendGrid($api_key);
 			try {

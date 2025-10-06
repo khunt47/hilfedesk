@@ -37,6 +37,8 @@ var app = new Vue({
                 if(response.data.success) {
                     Swal.fire('Success!',response.data.message,'success')
                     self.name = ''
+                    self.ltcrmId = 0
+                    self.geedeskId = 0
                 }
                 else {
                     Swal.fire('Error!',response.data.message,'error')

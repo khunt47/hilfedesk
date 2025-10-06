@@ -93,12 +93,56 @@ class SuggestionsController extends Controller
             }
             else {
                 return response()->json(["success" => false, "error" => 'No Suggestions found' ], 404);
-            }
-            
+            } 
         } catch (\Throwable $th) {
             $message = $th->getMessage();
             return response()->json(["success" => false,  'message' => $message], 400);
+        }
+    }
 
+    /**
+    * Update Suggestion API
+    *
+    * Method : POST
+    * 
+    * @author Jayesoorya jayesoorya.p@geedesk.com
+    *
+    * @return [json] 
+    */
+
+    public function update_suggestion(Request $request) {
+        try{
+            $company_id = $request->get('company_id');
+
+            $validated = validator($request->all(), [
+                'id'         => 'required|integer|exists:suggestions,id',
+                'suggestion' => 'required|string',
+            ]);
+
+            if ($validated->fails()) {
+                return response()->json(["success" => false, "error" => $validated->errors()->first()], 400);
+            }
+
+            $id = $request->input('id');
+            $newSuggestion = $request->input('suggestion');
+
+             $suggestion_updated = DB::table('suggestions')
+                                   ->where('id', $id)
+                                   ->where('company_id', $company_id)
+                                   ->update([
+                                        'suggestion' => $newSuggestion,
+                                   ]);
+
+            if ($suggestion_updated) {
+                return response()->json(["success" => true, "message" => "Suggestion updated successfully"], 200);
+            } 
+            else {
+                return response()->json(["success" => false, "error"  => "Suggestion not updated successfully"], 400);
+            }
+        }
+        catch (\Throwable $th) {
+            $message = $th->getMessage();
+            return response()->json(["success" => false,  'message' => $message], 400);
         }
     }
 

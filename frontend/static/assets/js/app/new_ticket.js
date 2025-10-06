@@ -18,11 +18,19 @@ var app = new Vue({
         baseUrl: '',
         projects: [],
         projectsCount: 0,
+        contacts: [],
+        contact_input: true,
+        customer_input: true,
+        customerName: '',
+        crmCustomerId: 0,
+        geedeskCompanyId: 0,
+        contactId: 0
     },
     mounted: function() {
         this.autoLoginUser()
         this.getProjects()
         this.getCustomers()
+        this.getContacts()
     },
     methods: {
         autoLoginUser: function() {
@@ -74,10 +82,51 @@ var app = new Vue({
         setProjectId: function(event) {
             var self = this
             self.projectId = event.target.value
+             console.log(self.projectId);
+            return;
         },
         setCustomerId: function(event) {
             var self = this
             self.customerId = event.target.value
+            self.contactId = 0;
+            self.getContacts();
+        },
+        setContactId: function(event) {
+            var self = this
+            // self.contactId = event.target.value
+            self.contactId = parseInt(event.target.value);
+        },
+        createCustomerInput: function() {
+            var self = this
+            self.customer_input = false
+            self.contact_input  = false
+        },
+        openContactInput: function() {
+            var self = this
+            self.contact_input = false
+        },
+        getContacts: function() {
+            var self = this
+            self.apiBaseUrl = self.$refs.api_base_url.value
+            self.userToken = localStorage.getItem("hd_user_token");
+            var url = self.apiBaseUrl + '/customers/contacts?customer_id=' + self.customerId
+            axios.get(url, { headers: {"Authorization" : 'Bearer '+self.userToken} })
+                .then(function (response) {
+                    if (response.data.status != 'failed') {
+                        self.contacts = response.data.data
+                        self.contactsCount = self.contacts.length
+                    }
+                    else {
+                        self.contactsCount = 0
+                        self.contacts = []
+                    }
+                    $('#overlay').fadeOut();
+                })
+                .catch(function (error) {
+                    self.contactsCount = 0
+                    self.contacts = []
+                    $('#overlay').fadeOut();
+                })
         },
         onTrixChange(event) {
             var self = this
@@ -92,25 +141,33 @@ var app = new Vue({
                 $.notify('Product cannot be empty', "error");
                 return false
             }
-            else if (self.customerId === 0) {
-                $.notify('Customer cannot be empty', "error");
-                return false
-            }
             else if (self.ticketTitle === '' || self.ticketTitle === null) {
                 $.notify('Ticket title cannot be empty', "error");
                 return false
             }
-            else if (self.contactFName === '' || self.contactFName === null) {
-                $.notify('Contact first name cannot be empty', "error");
-                return false
+            else if (self.contact_input && (!self.contactId || Number(self.contactId) === 0)) {
+                $.notify('Please select a contact', "error");
+                return false;
             }
-            else if (self.contactLName === '' || self.contactLName === null) {
-                $.notify('Contact last name cannot be empty', "error");
-                return false
+            else if (self.customer_input === false) {
+                if (self.customerName === '' || self.customerName === null) {
+                    $.notify('Customer name cannot be empty', "error");
+                    return false
+                }
             }
-            else if (self.contactEmail === '' || self.contactEmail === null) {
-                $.notify('Contact email cannot be empty', "error");
-                return false
+            else if (self.contact_input === false) {
+                if (self.contactFName === '' || self.contactFName === null) {
+                    $.notify('Contact first name cannot be empty', "error");
+                    return false
+                }
+                else if (self.contactLName === '' || self.contactLName === null) {
+                    $.notify('Contact last name cannot be empty', "error");
+                    return false
+                }
+                else if (self.contactEmail === '' || self.contactEmail === null) {
+                    $.notify('Contact email cannot be empty', "error");
+                    return false
+                }
             }
             else if (self.ticketDesc === '' || self.ticketDesc === null) {
                 $.notify('Ticket description cannot be empty', "error");
@@ -135,6 +192,10 @@ var app = new Vue({
             formData.append('contact_fname', self.contactFName);
             formData.append('contact_lname', self.contactLName);
             formData.append('contact_email', self.contactEmail);
+            formData.append('customer_name', self.customerName);
+            formData.append('contact_id', self.contactId);
+            formData.append('crm_customer_id', self.crmCustomerId);
+            formData.append('geedesk_company_id', self.geedeskCompanyId);
             formData.append('source', 'web');
 
             if (fileInput.files.length > 0) {

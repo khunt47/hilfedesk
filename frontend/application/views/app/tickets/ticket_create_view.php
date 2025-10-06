@@ -32,37 +32,65 @@
                 </option>
               </select>
             </div>
-            <!-- <div class="form-group">
+            <div class="form-group" v-if=customer_input>
               <label for="user_name"><b>Customer</b> <font color="red">*</font></label>
+              <button class="btn btn-sm btn-success" @click="createCustomerInput"><i class="fa fa-plus fa-1x"></i>&nbsp;New</button>
               <select v-model="customerId" @change="setCustomerId($event)" class="form-control">
                 <option value=0 :selected="customerId === 0" :disabled="customerId === 0">Select customer</option>
                 <option v-for="(item, index) in customers" :value="item.id" :selected="customerId === item.id" :disabled="customerId === item.id">
                   {{item.cust_name}}
                 </option>
               </select>
-            </div> -->
-            <div class="form-group">
+            </div>
+            <!-- <div class="form-group" v-if=customer_input>
               <label for="user_name"><b>Customer</b> <font color="red">*</font></label>
-              <v-select :options="customers" v-model="customerId" label="cust_name" :reduce="customer => customer.id"></v-select>
+              <button class="btn btn-sm btn-success" @click="createCustomerInput"><i class="fa fa-plus fa-1x"></i>&nbsp;New</button>
+              <v-select :options="customers" v-model="customerId" label="cust_name" :reduce="customer => customer.id" @change="setCustomerId($event)"></v-select>
+            </div> -->
+            <div v-else>
+              <div class="form-group">
+                  <label for="name"><b>Name</b> <font color="red">*</font></label>
+                  <input class="form-control" type="text" v-model="customerName" placeholder="Enter customer name">
+              </div>
+              <div class="form-group">
+                  <label for="name"><b>LTCRM ID</b> </label>
+                  <input class="form-control" type="text" v-model="crmCustomerId" placeholder="Enter customer name">
+              </div>
+              <div class="form-group">
+                  <label for="name"><b>Geedesk ID</b> </label>
+                  <input class="form-control" type="text" v-model="geedeskCompanyId" placeholder="Enter customer name">
+              </div>
             </div>
             <div class="form-group">
               <label for="user_name"><b>Title</b> <font color="red">*</font></label>
-              <input class="form-control" type="email" v-model="ticketTitle" placeholder="Enter ticket title">
+              <input class="form-control" type="text" v-model="ticketTitle" placeholder="Enter ticket title">
             </div>
-            <div class="form-group">
-              <label for="user_name"><b>First Name</b> <font color="red">*</font></label>
-              <input class="form-control" type="email" v-model="contactFName" placeholder="Enter contact first name">
-            </div>
-            <div class="form-group">
-              <label for="user_name"><b>Last Name</b> <font color="red">*</font></label>
-              <input class="form-control" type="email" v-model="contactLName" placeholder="Enter contact last name">
-            </div>
-            <div class="form-group">
-              <label for="user_name"><b>Email</b> <font color="red">*</font></label>
+            <div class="form-group" v-if="contact_input">
+                <label for="contact"><b>Contacts</b> <font color="red">*</font></label>
+                  <button class="btn btn-sm btn-success" @click="openContactInput"><i class="fa fa-plus fa-1x"></i>&nbsp;New</button>
+                  <select class="form-control" v-model="contactId" @change="setContactId($event)">
+                    <option disabled value="">Select contact</option>
+                    <option v-for="(item, index) in contacts" :key="item.id" :value="item.id">
+                      {{ item.fname }} {{ item.lname }}
+                    </option>
+                  </select>
+              </div>
+            <div v-else>
+              <div class="form-group">
+                <label for="user_name"><b>First Name</b> <font color="red">*</font></label>
+                <input class="form-control" type="email" v-model="contactFName" placeholder="Enter contact first name">
+              </div>
+              <div class="form-group">
+                <label for="user_name"><b>Last Name</b> <font color="red">*</font></label>
+                <input class="form-control" type="text" v-model="contactLName" placeholder="Enter contact last name">
+              </div>
+              <div class="form-group">
+              <label for="email"><b>Email</b> <font color="red">*</font></label>
               <input class="form-control" type="email" v-model="contactEmail" placeholder="Enter contact email">
             </div>
+            </div>
             <div class="form-group">
-              <label for="user_name"><b>Description</b> <font color="red">*</font></label>
+              <label for="description"><b>Description</b> <font color="red">*</font></label>
               <textarea v-model="ticketDesc" class="form-control" placeholder="Describe the ticket in detail"></textarea>
                 <!-- <input id="content" type="hidden">
                 <trix-editor input="content" @trix-change="onTrixChange"></trix-editor> -->

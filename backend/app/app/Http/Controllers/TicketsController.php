@@ -68,7 +68,6 @@ class TicketsController extends Controller
                 'id' => Rule::unique('projects')->where(fn ($query) => $query->where('company_id', $company_id)),
                 'heading' => 'bail|required',
                 'from_email' => 'bail|email',
-                'customer_id' => 'bail|numeric|exists:customers,id|min:1',
                 'source' => 'bail|required|in:'. implode(",",$rules)
             ]);
             if ($validated->fails()) {
@@ -85,15 +84,47 @@ class TicketsController extends Controller
                 }
                 $source = $request->source;
 
+                $customer_id = $request->customer_id;
+               
+                if (empty($request->customer_id) || $request->customer_id == 0) {
+
+                    $customer_name = $request->customer_name;
+                    $crm_customer_id = $request->crm_customer_id;
+                    $geedesk_company_id = $request->geedesk_company_id;
+
+                    if (empty($customer_name)) {
+                        return response()->json(["success" => false, "errors" => 'Customer name is required when customer ID is not provided'], 400);
+                    }
+
+                    $existing_customer = DB::table('customers')
+                        ->where('company_id', $company_id)
+                        ->where('cust_name', $customer_name)
+                        ->first();
+
+                    if ($existing_customer) {
+                        $customer_id = $existing_customer->id;
+                    } else {
+                        // Create new customer
+                        $new_customer_data = [
+                            'company_id' => $company_id,
+                            'cust_name' => $customer_name,
+                            'crm_customer_id' => $crm_customer_id,
+                            'geedesk_company_id' => $geedesk_company_id,
+                        ];
+
+                        $customer_id = DB::table('customers')->insertGetId($new_customer_data);
+                    }
+                }
+
                 /*Processing the contact received*/
                 $from_email = $request->from_email;
-                $customer_id = $request->customer_id;
+                // $customer_id = $request->customer_id;
 
                 $contact_fname = $request->contact_fname;
                 $contact_lname = $request->contact_lname;
                 $contact_name = $contact_fname.' '.$contact_lname;
 
-                if (!isset($request->contact_id)) {
+                if (empty($request->contact_id) || $request->contact_id == 0) {
                     
                     $contact_email = $request->contact_email;
 
@@ -1346,6 +1377,5 @@ class TicketsController extends Controller
             return response()->json(["success" => false,  'message' => $message], 400);
         }
     }
-
 
 }

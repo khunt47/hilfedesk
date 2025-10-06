@@ -1,0 +1,1 @@
+1. AI should identify if a ticket is a feature requests and send them a templated email and resolve the ticket
