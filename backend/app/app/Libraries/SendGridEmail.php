@@ -16,7 +16,7 @@ class SendGridEmail
 			    "text/html", $body
 			);
 
-			$api_key = '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';
+			$api_key = '';
 
 			$sendgrid = new \SendGrid($api_key);
 			try {
@@ -34,7 +34,7 @@ class SendGridEmail
 	public function send_emails($tos, $from, $from_name, $subject, $body) 
 	{
 		if ($from === '' || $from === null) {
-			$from = 'noreply@geedesk.com';
+			$from = 'noreply@example.com';
 		}
 		$email_s = new \SendGrid\Mail\Mail(); 
 		$email_s->setFrom($from, $from_name);
