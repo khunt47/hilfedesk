@@ -1,7 +1,5 @@
 <?php
 
-$config['geedesk_secret_key'] = '';
-$config['geedesk_third_party_secret_key'] = '';
 
 $config['api_base_url'] = 'http://localhost:8082/v1';
 
